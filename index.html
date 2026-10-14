@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adarsh Vidya Mandir Soorsagar - Half Yearly Admit Card 2026-27</title>
+  <meta name="description" content="Download Half Yearly Examination Admit Card for Smt Indiradevi Mangilal Agrawal Adarsh Vidya Mandir Soorsagar, Jodhpur.">
+  <link rel="icon" type="image/png" href="logo/vidyabhartiLogo.png">
+  
+  <!-- Google Fonts for crisp Hindi and English typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for clean UI buttons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar no-print" aria-label="सत्र सूचना">
+    <div class="announcement-inner">
+      <span class="badge"><i class="fa-solid fa-bell"></i> सूचना</span>
+      <span class="announcement-text">सत्र 2026-27 अर्द्ध वार्षिक परीक्षा प्रवेश पत्र ऑनलाइन डाउनलोड हेतु उपलब्ध हैं।</span>
+    </div>
+  </aside>
+
+  <!-- Website Header -->
+  <header class="site-header no-print">
+    <div class="header-container">
+      <div class="brand-group">
+        <img src="logo/vidyabhartiLogo.png" alt="Vidya Bharti Logo" class="brand-logo" onerror="this.style.display='none'">
+        <div class="brand-titles">
+          <div class="org-tag"><i class="fa-solid fa-graduation-cap"></i> विद्या भारती विद्यालय</div>
+          <h1 class="school-name-hindi">श्रीमती इंदिरादेवी मांगीलाल अग्रवाल आदर्श विद्यामंदिर</h1>
+          <p class="school-name-sub">सूरसागर, जोधपुर (राजस्थान) • अर्द्ध वार्षिक परीक्षा 2026-27</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btnOpenHelp" class="btn-outline-header" title="सहायता एवं निर्देश">
+          <i class="fa-solid fa-circle-question"></i> <span>निर्देश</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="main-wrapper">
+    <!-- Hero / Search Section -->
+    <section class="search-hero no-print">
+      <div class="search-card">
+        <div class="search-card-header">
+          <div class="portal-tag">
+            <i class="fa-solid fa-id-card-clip"></i> विद्यार्थी प्रवेश पत्र पोर्टल (Student Portal)
+          </div>
+          <h2>अर्द्ध वार्षिक परीक्षा प्रवेश पत्र 2026-27</h2>
+          <p class="search-desc">अपना रोल नंबर दर्ज करें और अपना सत्यापित प्रवेश पत्र तुरंत देखें व डाउनलोड करें।</p>
+        </div>
+
+        <form id="searchForm" class="search-form" onsubmit="return false;">
+          <div class="input-wrapper">
+            <i class="fa-solid fa-id-badge input-icon"></i>
+            <input 
+              type="text" 
+              id="rollInput" 
+              class="roll-input" 
+              placeholder="रोल नंबर दर्ज करें (उदा. 1001, 1015)..." 
+              autocomplete="off"
+              inputmode="numeric"
+              maxlength="10"
+              required
+            >
+            <button type="button" id="btnClearSearch" class="btn-clear" title="Clear input" style="display:none;">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <button type="submit" id="btnSearch" class="btn-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>प्रवेश पत्र खोजें</span>
+          </button>
+        </form>
+
+        <!-- Quick roll number test pills -->
+        <div class="quick-pills-row">
+          <span class="pills-label"><i class="fa-solid fa-bolt"></i> त्वरित परीक्षण रोल नंबर:</span>
+          <div class="pills-list">
+            <button type="button" class="quick-pill" data-roll="1001">1001 (1st)</button>
+            <button type="button" class="quick-pill" data-roll="1016">1016 (2nd)</button>
+            <button type="button" class="quick-pill" data-roll="1030">1030 (3rd)</button>
+            <button type="button" class="quick-pill" data-roll="1056">1056 (4th)</button>
+            <button type="button" class="quick-pill" data-roll="1076">1076 (5th)</button>
+            <button type="button" class="quick-pill" data-roll="1092">1092 (6th)</button>
+            <button type="button" class="quick-pill" data-roll="1108">1108 (7th)</button>
+            <button type="button" class="quick-pill" data-roll="1140">1140 (8th)</button>
+            <button type="button" class="quick-pill" data-roll="1165">1165 (9th)</button>
+            <button type="button" class="quick-pill" data-roll="1183">1183 (10th)</button>
+          </div>
+        </div>
+
+        <!-- Student directory link -->
+        <div class="search-footer-links">
+          <button type="button" id="btnOpenRoster" class="link-btn">
+            <i class="fa-solid fa-users-viewfinder"></i> रोल नंबर याद नहीं? नाम या कक्षा से खोजें (Find Roll No)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Error / Alert Message Box -->
+    <div id="errorAlert" class="alert-box alert-error no-print" style="display: none;">
+      <i class="fa-solid fa-circle-exclamation alert-icon"></i>
+      <div class="alert-content">
+        <h4 id="errorTitle">रोल नंबर नहीं मिला (Roll Number Not Found)</h4>
+        <p id="errorMsg">कृपया सही रोल नंबर दर्ज करें (1001 से 1200) अथवा नीचे दी गई सूची में अपना नाम खोजें।</p>
+      </div>
+      <button type="button" class="alert-close" onclick="hideError()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Student Details Verification Card -->
+    <section id="studentDetailsCard" class="student-verified-card no-print" style="display: none;">
+      <div class="card-glow"></div>
+      <div class="verified-header">
+        <div class="verified-badge">
+          <i class="fa-solid fa-circle-check"></i> विवरण सत्यापित (Student Verified)
+        </div>
+        <span class="session-pill">सत्र 2026-27</span>
+      </div>
+
+      <div class="verified-grid">
+        <div class="student-avatar-wrap">
+          <img id="verifiedPhoto" src="placeholder.svg" alt="Student Photo" class="verified-photo" onerror="this.src='placeholder.svg'">
+          <span class="photo-caption">सत्यापित छायाचित्र</span>
+        </div>
+
+        <div class="verified-info-col">
+          <h3 id="verifiedName" class="verified-name">BHAGYSHREE</h3>
+          <div class="verified-details-list">
+            <div class="detail-item">
+              <span class="label"><i class="fa-solid fa-user-tie"></i> पिता का नाम:</span>
+              <span id="verifiedFather" class="val">DOULATRAM</span>
+            </div>
+            <div class="detail-item">
+              <span class="label"><i class="fa-solid fa-graduation-cap"></i> कक्षा (Class):</span>
+              <span id="verifiedClass" class="val badge-class">FIRST</span>
+            </div>
+            <div class="detail-item">
+              <span class="label"><i class="fa-solid fa-hashtag"></i> रोल नंबर:</span>
+              <span id="verifiedRoll" class="val highlight-roll">1001</span>
+            </div>
+            <div class="detail-item">
+              <span class="label"><i class="fa-solid fa-calendar-day"></i> जन्म तिथि (DOB):</span>
+              <span id="verifiedDob" class="val">07-05-2019</span>
+            </div>
+            <div class="detail-item full-width">
+              <span class="label"><i class="fa-solid fa-font"></i> रोल नंबर (शब्दों में):</span>
+              <span id="verifiedRollWords" class="val">One Thousand One</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons Bar -->
+      <div class="verified-actions-bar">
+        <button type="button" id="btnPrintCard" class="btn-action btn-print">
+          <i class="fa-solid fa-print"></i>
+          <span>प्रवेश पत्र प्रिंट करें (Print Admit Card)</span>
+        </button>
+        <button type="button" id="btnDownloadPdf" class="btn-action btn-pdf">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>पीडीएफ डाउनलोड (Download PDF)</span>
+        </button>
+        <button type="button" id="btnScrollPreview" class="btn-action btn-preview">
+          <i class="fa-solid fa-eye"></i>
+          <span>नीचे प्रवेश पत्र देखें</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Admit Card Preview Section -->
+    <section id="admitCardSection" class="admit-preview-section" style="display: none;">
+      <div class="section-title-bar no-print">
+        <div class="preview-badge">
+          <i class="fa-solid fa-file-lines"></i> आधिकारिक प्रवेश पत्र पूर्वावलोकन (Official Admit Card)
+        </div>
+        <div class="zoom-controls">
+          <span class="desktop-hint"><i class="fa-solid fa-circle-info"></i> यह प्रवेश पत्र A4 साइज़ में सीधे प्रिंट व सेव करने हेतु पूर्ण रूप से तैयार है।</span>
+        </div>
+      </div>
+
+      <!-- Printable Admit Card Container -->
+      <div class="admit-card-scroll-wrap">
+        <div id="admitCardPrintArea" class="admit-card-sheet">
+          
+          <!-- Dashed Decorative Magenta Border Inner Frame -->
+          <div class="admit-card-inner-frame">
+            
+            <!-- Top Mottos Row: शिक्षा, सेवा, संस्कार -->
+            <div class="motto-row">
+              <div class="motto-col left">शिक्षा</div>
+              <div class="motto-col center">सेवा</div>
+              <div class="motto-col right">संस्कार</div>
+            </div>
+
+            <!-- Header Grid: Logo, Central Titles, Photo -->
+            <div class="admit-header-grid">
+              <!-- Left Emblem -->
+              <div class="header-logo-cell">
+                <img src="logo/vidyabhartiLogo.png" alt="Vidya Bharti Logo" class="vidya-logo" onerror="this.style.display='none'">
+              </div>
+
+              <!-- Center Text Content -->
+              <div class="header-center-cell">
+                <div class="om-symbol">ॐ</div>
+                <div class="school-affiliation">(विद्या भारती विद्यालय)</div>
+                <h2 class="school-full-name">श्रीमती इंदिरादेवी मांगीलाल अग्रवाल आदर्श विद्यामंदिर सूरसागर, जोधपुर</h2>
+                <div class="exam-name-banner">अर्द्ध वार्षिक परीक्षा 2026-27</div>
+              </div>
+
+              <!-- Right Student Photo Box -->
+              <div class="header-photo-cell">
+                <div class="photo-frame">
+                  <img id="cardPhoto" src="placeholder.svg" alt="Student Photo" class="student-card-img" onerror="this.src='placeholder.svg'">
+                </div>
+              </div>
+            </div>
+
+            <!-- Solid Separator Rule -->
+            <hr class="admit-divider">
+
+            <!-- Banner: Student Admit Card -->
+            <div class="admit-card-title">Student Admit Card</div>
+
+            <!-- Student Candidate Details Table (4 Columns) -->
+            <table class="details-table" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td class="col-label">Candidate Name</td>
+                  <td class="col-value" id="cardName">BHAGYSHREE</td>
+                  <td class="col-label">Father Name</td>
+                  <td class="col-value" id="cardFather">DOULATRAM</td>
+                </tr>
+                <tr>
+                  <td class="col-label">Roll No</td>
+                  <td class="col-value bold-txt" id="cardRoll">1001</td>
+                  <td class="col-label">Class</td>
+                  <td class="col-value bold-txt" id="cardClass">FIRST</td>
+                </tr>
+                <tr>
+                  <td class="col-label">Roll No In Words</td>
+                  <td class="col-value" id="cardRollWords">One Thousand One</td>
+                  <td class="col-label">Date Of Birth</td>
+                  <td class="col-value" id="cardDob">07-05-2019</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Exam Schedule Split Table -->
+            <div class="exam-schedule-wrapper">
+              <table class="schedule-table" cellspacing="0" cellpadding="0">
+                <thead>
+                  <tr>
+                    <th colspan="6" class="schedule-main-header">Exam Schedule</th>
+                  </tr>
+                  <tr class="schedule-sub-header">
+                    <th class="col-sr">Sr</th>
+                    <th class="col-date">Exam Date</th>
+                    <th class="col-subj">Subject</th>
+                    <th class="col-sr">Sr</th>
+                    <th class="col-date">Exam Date</th>
+                    <th class="col-subj">Subject</th>
+                  </tr>
+                </thead>
+                <tbody id="scheduleTableBody">
+                  <!-- Dynamically populated rows (exactly 4 rows matching the PDF layout) -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Note / Rules Box -->
+            <div class="admit-note-container">
+              <div class="note-label-cell">
+                <span>Note</span>
+              </div>
+              <div class="note-content-cell">
+                <ol class="instructions-list">
+                  <li>1) परीक्षा कक्ष में परीक्षा के निर्धारित समय से 5 मिनट पूर्व पहुंचना है।</li>
+                  <li>2) परीक्षार्थी को विद्यालय वेश पहनकर आना है।</li>
+                  <li>3) परीक्षा प्रवेश पत्र साथ लेकर आयें।</li>
+                  <li>4) परीक्षा दिनांक तक सभी बकाया शुल्क (शिक्षण/वाहन/छात्रावास) जमा कराना आवश्यक है।</li>
+                  <li>5) परीक्षा प्रश्न पत्रों के अनुसार आवश्यक लेखन/ड्रॉइंग सामग्री (पेन, पेन्सिल, रबर, रंग, ज्योमेट्री बॉक्स आदि) साथ लेकर आयें।</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Principal Signature Section -->
+            <div class="signature-row">
+              <div class="signature-block">
+                <div class="sign-image-wrapper">
+                  <img src="logo/principalSign.png" alt="Principal Signature" class="sign-img" onerror="this.style.display='none'">
+                </div>
+                <div class="sign-underline"></div>
+                <div class="sign-title">प्रधानाचार्य</div>
+              </div>
+            </div>
+
+          </div><!-- /.admit-card-inner-frame -->
+        </div><!-- /#admitCardPrintArea -->
+      </div><!-- /.admit-card-scroll-wrap -->
+
+      <!-- Bottom Quick Actions for mobile and desktop -->
+      <div class="bottom-actions-container no-print">
+        <button type="button" class="btn-action btn-print" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> <span>A4 साइज़ में प्रिंट करें (Print)</span>
+        </button>
+        <button type="button" class="btn-action btn-pdf" id="btnDownloadPdfBottom">
+          <i class="fa-solid fa-file-arrow-down"></i> <span>पीडीएफ सेव करें (Save PDF)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Welcome Guide / Feature Grid (Visible before search) -->
+    <section id="welcomeGuide" class="welcome-guide no-print">
+      <div class="guide-header">
+        <h3><i class="fa-solid fa-compass"></i> प्रवेश पत्र डाउनलोड करने के सरल चरण</h3>
+        <p>विद्यार्थी या अभिभावक केवल 3 सरल चरणों में प्रवेश पत्र प्राप्त कर सकते हैं:</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-icon"><i class="fa-solid fa-keyboard"></i></div>
+          <h4>रोल नंबर दर्ज करें</h4>
+          <p>ऊपर दिए गए बॉक्स में छात्र का रोल नंबर (उदा. 1001) दर्ज करें अथवा नाम खोजें।</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-icon"><i class="fa-solid fa-id-card"></i></div>
+          <h4>विवरण सत्यापित करें</h4>
+          <p>छात्र का नाम, पिता का नाम, कक्षा एवं परीक्षा समय सारणी (Exam Schedule) की जाँच करें।</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-icon"><i class="fa-solid fa-download"></i></div>
+          <h4>प्रिंट अथवा डाउनलोड करें</h4>
+          <p>प्रवेश पत्र को मोबाइल में पीडीएफ सेव करें या कम्प्यूटर से सीधे A4 पेपर पर प्रिंट निकालें।</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Student Directory Modal (Find Roll Number) -->
+  <div id="rosterModal" class="modal-overlay no-print" style="display: none;">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-users"></i>
+          <div>
+            <h3>विद्यार्थी नामावली (Find Student Roll No)</h3>
+            <p>नाम या कक्षा अनुसार रोल नंबर खोजें</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" id="btnCloseRoster">&times;</button>
+      </div>
+
+      <div class="modal-filter-bar">
+        <div class="filter-group">
+          <label><i class="fa-solid fa-filter"></i> कक्षा चुनें:</label>
+          <select id="classFilterSelect" class="filter-select">
+            <option value="ALL">सभी कक्षाएं (All Classes)</option>
+            <option value="FIRST">1st (FIRST)</option>
+            <option value="SECOND">2nd (SECOND)</option>
+            <option value="THIRD">3rd (THIRD)</option>
+            <option value="FOURTH">4th (FOURTH)</option>
+            <option value="FIFTH">5th (FIFTH)</option>
+            <option value="SIXTH">6th (SIXTH)</option>
+            <option value="SEVENTH">7th (SEVENTH)</option>
+            <option value="EIGHTH">8th (EIGHTH)</option>
+            <option value="NINTH">9th (NINTH)</option>
+            <option value="TENTH">10th (TENTH)</option>
+          </select>
+        </div>
+        <div class="filter-group flex-1">
+          <label><i class="fa-solid fa-magnifying-glass"></i> नाम द्वारा खोजें:</label>
+          <input type="text" id="nameFilterInput" class="filter-input" placeholder="छात्र अथवा पिता का नाम दर्ज करें...">
+        </div>
+      </div>
+
+      <div class="modal-table-wrap">
+        <table class="roster-table">
+          <thead>
+            <tr>
+              <th>रोल नं.</th>
+              <th>छात्र का नाम</th>
+              <th>पिता का नाम</th>
+              <th>कक्षा</th>
+              <th>कार्य</th>
+            </tr>
+          </thead>
+          <tbody id="rosterTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <span id="rosterCount">200 विद्यार्थी उपलब्ध</span>
+        <button type="button" class="btn-modal-close" id="btnCloseRosterFooter">बंद करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help & Guidelines Modal -->
+  <div id="helpModal" class="modal-overlay no-print" style="display: none;">
+    <div class="modal-window help-window">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-circle-question"></i>
+          <div>
+            <h3>परीक्षा निर्देश एवं सहायता</h3>
+            <p>अर्द्ध वार्षिक परीक्षा 2026-27 दिशा-निर्देश</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" id="btnCloseHelp">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="help-section">
+          <h4><i class="fa-solid fa-clipboard-check"></i> परीक्षा कक्ष के मुख्य नियम</h4>
+          <ul>
+            <li>विद्यार्थी परीक्षा के निर्धारित समय से कम से कम <strong>5 मिनट पूर्व</strong> परीक्षा कक्ष में अवश्य पहुंचे।</li>
+            <li>प्रत्येक परीक्षार्थी को <strong>पूर्ण विद्यालय गणवेश (Uniform)</strong> में ही उपस्थित होना अनिवार्य है।</li>
+            <li>यह आधिकारिक प्रवेश पत्र परीक्षा केंद्र में प्रतिदिन साथ लेकर आना आवश्यक है।</li>
+            <li>परीक्षा शुल्क व अन्य बकाया शुल्क कार्यालय में परीक्षा तिथि से पूर्व जमा कराएं।</li>
+            <li>आवश्यक लेखन सामग्री (पेन, पेन्सिल, स्केल, ज्योमेट्री बॉक्स आदि) स्वयं साथ लाएं।</li>
+          </ul>
+        </div>
+        <div class="help-section">
+          <h4><i class="fa-solid fa-mobile-screen-button"></i> मोबाइल से पीडीएफ कैसे सेव करें?</h4>
+          <ol>
+            <li>अपना रोल नंबर दर्ज कर <strong>"प्रवेश पत्र खोजें"</strong> पर क्लिक करें।</li>
+            <li><strong>"पीडीएफ डाउनलोड"</strong> बटन दबाने पर प्रवेश पत्र सीधे आपके मोबाइल में सेव हो जाएगा।</li>
+            <li>या <strong>"प्रिंट करें"</strong> दबाकर 'Save as PDF' विकल्प चुन सकते हैं।</li>
+          </ol>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-close" id="btnCloseHelpFooter">समझ गया (OK)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay for PDF generation -->
+  <div id="loadingOverlay" class="loading-overlay no-print" style="display: none;">
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <h4 id="loadingText">पीडीएफ तैयार हो रहा है...</h4>
+      <p>कृपया प्रतीक्षा करें (Generating PDF)</p>
+    </div>
+  </div>
+
+  <!-- Website Footer -->
+  <footer class="site-footer no-print">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="logo/vidyabhartiLogo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+          <div>
+            <h4>श्रीमती इंदिरादेवी मांगीलाल अग्रवाल आदर्श विद्यामंदिर</h4>
+            <p>सूरसागर, जोधपुर (राजस्थान) - 342024</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col text-right">
+        <p class="footer-motto">"सा विद्या या विमुक्तये" • विद्या भारती राजस्थान</p>
+        <p class="footer-copy">© 2026-27 आदर्श विद्या मंदिर सूरसागर • सर्वाधिकार सुरक्षित</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bundled Student & Schedule Data -->
+  <script src="data.js"></script>
+
+  <!-- Local html2pdf bundle for offline PDF export -->
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
