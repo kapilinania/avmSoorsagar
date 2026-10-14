@@ -843,15 +843,17 @@ body {
 .details-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   table-layout: fixed;
 }
 
 .details-table td {
   border: 1px solid var(--table-border);
-  padding: 6px 10px;
+  padding: 7px 10px;
   font-size: 13px;
   vertical-align: middle;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .details-table .col-label {
@@ -877,7 +879,7 @@ body {
 
 /* Exam Schedule Table */
 .exam-schedule-wrapper {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .schedule-table {
@@ -890,17 +892,18 @@ body {
 .schedule-table td {
   border: 1px solid var(--table-border);
   font-size: 12.5px;
-  padding: 5px 8px;
+  padding: 6px 8px;
   text-align: center;
   vertical-align: middle;
   font-family: 'Poppins', -apple-system, sans-serif;
+  overflow: hidden;
 }
 
 .schedule-main-header {
   font-size: 14px;
   font-weight: 700;
   background: #ffffff;
-  padding: 6px 8px !important;
+  padding: 7px 8px !important;
   color: #000000;
 }
 
@@ -908,7 +911,7 @@ body {
   font-weight: 700;
   background: #ffffff;
   color: #000000;
-  padding: 5px 6px;
+  padding: 6px 6px;
 }
 
 .col-sr {
@@ -924,7 +927,7 @@ body {
 }
 
 .schedule-table tbody td {
-  height: 24px;
+  height: 28px;
   font-weight: 500;
 }
 
@@ -1480,6 +1483,10 @@ body {
   .school-name-hindi {
     font-size: 1.15rem;
   }
+
+  .main-wrapper {
+    padding: 16px 12px 36px;
+  }
   
   .search-card {
     padding: 20px 16px;
@@ -1514,10 +1521,38 @@ body {
   
   .verified-actions-bar {
     flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    padding-top: 14px;
+  }
+
+  .bottom-actions-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    padding: 0 4px;
+    margin-top: 16px;
   }
   
   .btn-action {
-    width: 100%;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 50px;
+    font-size: 0.95rem;
+    padding: 0 16px;
+  }
+
+  .admit-card-scroll-wrap {
+    padding: 6px 0 14px;
+    overflow: hidden;
+  }
+
+  .section-title-bar {
+    padding: 0 2px;
+  }
+
+  .desktop-hint {
+    font-size: 0.78rem;
   }
   
   .footer-container {
@@ -1544,11 +1579,13 @@ body {
     color: #000000 !important;
     margin: 0 !important;
     padding: 0 !important;
-    min-height: auto !important;
     width: 100% !important;
+    height: auto !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  /* Hide all UI elements, navigation, hero, search, footers */
+  /* Hide all non-printable UI elements */
   .no-print,
   .announcement-bar,
   .site-header,
@@ -1559,7 +1596,8 @@ body {
   .welcome-guide,
   .modal-overlay,
   .loading-overlay,
-  .site-footer {
+  .site-footer,
+  #errorAlert {
     display: none !important;
   }
 
@@ -1579,16 +1617,21 @@ body {
   .admit-card-scroll-wrap {
     overflow: visible !important;
     padding: 0 !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     width: 100% !important;
+    height: auto !important;
+    transform: none !important;
   }
 
-  /* Sheet adjustments for print */
+  /* Sheet adjustments for strict A4 1-Page print */
+  #admitCardPrintArea,
   .admit-card-sheet {
+    transform: none !important;
+    -webkit-transform: none !important;
     box-shadow: none !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
     min-height: auto !important;
     page-break-inside: avoid !important;
@@ -1597,10 +1640,13 @@ body {
 
   .admit-card-inner-frame {
     border: 3px dashed #df1ab4 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
     min-height: auto !important;
     padding: 16px 18px 14px !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    page-break-inside: avoid !important;
   }
 
   /* Ensure colors and borders are preserved */

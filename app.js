@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const verifiedDob = document.getElementById('verifiedDob');
   const verifiedRollWords = document.getElementById('verifiedRollWords');
   const btnPrintCard = document.getElementById('btnPrintCard');
+  const btnPrintCardBottom = document.getElementById('btnPrintCardBottom');
   const btnDownloadPdf = document.getElementById('btnDownloadPdf');
   const btnDownloadPdfBottom = document.getElementById('btnDownloadPdfBottom');
   const btnScrollPreview = document.getElementById('btnScrollPreview');
@@ -153,23 +154,43 @@ document.addEventListener('DOMContentLoaded', () => {
   function adjustMobileScale() {
     const wrap = document.querySelector('.admit-card-scroll-wrap');
     if (!wrap || !admitCardPrintArea) return;
-    const windowWidth = window.innerWidth;
-    if (windowWidth < 790) {
-      const padding = 24;
-      const targetWidth = windowWidth - padding;
-      const baseWidth = 760;
-      const scale = Math.min(1, targetWidth / baseWidth);
+    
+    // Available container width
+    const containerWidth = wrap.clientWidth || window.innerWidth;
+    const baseWidth = 760;
+
+    if (containerWidth < baseWidth + 8) {
+      // Scale down neatly to fit mobile width with comfortable margin
+      const targetWidth = Math.max(280, containerWidth - 12);
+      const scale = targetWidth / baseWidth;
+
       admitCardPrintArea.style.transform = `scale(${scale})`;
-      admitCardPrintArea.style.transformOrigin = 'top center';
-      const actualHeight = admitCardPrintArea.offsetHeight || 650;
-      wrap.style.height = `${(actualHeight * scale) + 16}px`;
+      admitCardPrintArea.style.transformOrigin = 'top left';
+
+      // Centering offset
+      const scaledWidth = baseWidth * scale;
+      const leftOffset = Math.max(0, (containerWidth - scaledWidth) / 2);
+      admitCardPrintArea.style.marginLeft = `${leftOffset}px`;
+      admitCardPrintArea.style.marginRight = '0px';
+
+      // Wrap height to fit scaled card precisely without extra blank space
+      const actualHeight = admitCardPrintArea.scrollHeight || 750;
+      wrap.style.height = `${Math.ceil(actualHeight * scale) + 16}px`;
+      wrap.style.overflow = 'hidden';
     } else {
       admitCardPrintArea.style.transform = 'none';
+      admitCardPrintArea.style.transformOrigin = 'center top';
+      admitCardPrintArea.style.marginLeft = 'auto';
+      admitCardPrintArea.style.marginRight = 'auto';
       wrap.style.height = 'auto';
+      wrap.style.overflow = 'visible';
     }
   }
 
   window.addEventListener('resize', adjustMobileScale);
+  window.addEventListener('orientationchange', () => {
+    setTimeout(adjustMobileScale, 150);
+  });
 
   function renderSchedule(studentClass) {
     scheduleTableBody.innerHTML = '';
@@ -254,52 +275,127 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Action Buttons
-  btnPrintCard.addEventListener('click', () => {
-    window.print();
-  });
-
-  btnScrollPreview.addEventListener('click', () => {
-    admitCardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
   // ------------------------------------------------------------------
-  // PDF Export Engine (using html2pdf.js)
+  // High-Fidelity Print & PDF Engine (Strict 1-Page A4 Output)
   // ------------------------------------------------------------------
-  function downloadPDF() {
+  function triggerPrint() {
     if (!currentStudent) {
-      alert('कृपया पहले रोल नंबर खोजें।');
+      showError('विद्यार्थी चुनें', 'कृपया पहले रोल नंबर खोजें।');
+      return;
+    }
+
+    const wrap = document.querySelector('.admit-card-scroll-wrap');
+    
+    // Clear inline transform so print dialog sees the full unscaled A4 element
+    admitCardPrintArea.style.transform = 'none';
+    admitCardPrintArea.style.marginLeft = 'auto';
+    admitCardPrintArea.style.marginRight = 'auto';
+    if (wrap) {
+      wrap.style.height = 'auto';
+      wrap.style.overflow = 'visible';
+    }
+
+    setTimeout(() => {
+      window.print();
+    }, 100);
+  }
+
+  window.addEventListener('afterprint', () => {
+    adjustMobileScale();
+  });
+
+  async function downloadPDF() {
+    if (!currentStudent) {
+      showError('विद्यार्थी चुनें', 'कृपया पहले विद्यार्थी का रोल नंबर खोजें।');
       return;
     }
 
     loadingOverlay.style.display = 'flex';
-    const opt = {
-      margin:       [8, 10, 8, 10], // top, left, bottom, right in mm
-      filename:     `Admit_Card_${currentStudent.rollNo}_${(currentStudent.name || '').replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true, logging: false },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    const loadingText = document.getElementById('loadingText');
+    if (loadingText) loadingText.textContent = 'पीडीएफ तैयार हो रहा है...';
 
-    html2pdf()
-      .set(opt)
-      .from(admitCardPrintArea)
-      .save()
-      .then(() => {
-        loadingOverlay.style.display = 'none';
-      })
-      .catch((err) => {
-        console.error('PDF error:', err);
-        loadingOverlay.style.display = 'none';
-        // Fallback to print dialog if html2pdf fails
-        window.print();
-      });
+    const wrap = document.querySelector('.admit-card-scroll-wrap');
+
+    try {
+      // 1. Reset transforms on the card element for clean unscaled capture
+      admitCardPrintArea.style.transform = 'none';
+      admitCardPrintArea.style.marginLeft = 'auto';
+      admitCardPrintArea.style.marginRight = 'auto';
+      if (wrap) {
+        wrap.style.height = 'auto';
+        wrap.style.overflow = 'visible';
+      }
+
+      // 2. Ensure images inside admitCardPrintArea are loaded
+      const images = Array.from(admitCardPrintArea.querySelectorAll('img'));
+      await Promise.all(images.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => {
+          img.onload = res;
+          img.onerror = res;
+          setTimeout(res, 800);
+        });
+      }));
+
+      // Short delay for DOM render settle
+      await new Promise(r => setTimeout(r, 80));
+
+      // 3. Calculate exact A4 geometry (210mm x 297mm)
+      const baseWidthPx = 760;
+      const cardHeightPx = admitCardPrintArea.offsetHeight || 780;
+      const printableWidthMm = 186; // 12mm margins on left and right
+      const cardHeightMm = (printableWidthMm * cardHeightPx) / baseWidthPx;
+      
+      // Center vertically on the single A4 sheet
+      const topMarginMm = Math.max(10, Math.min(38, Math.floor((297 - cardHeightMm) / 2)));
+      const sideMarginMm = Math.floor((210 - printableWidthMm) / 2);
+
+      const safeStudentName = (currentStudent.name || 'Student').replace(/[^a-zA-Z0-9]/g, '_');
+      const filename = `Admit_Card_${currentStudent.rollNo}_${safeStudentName}.pdf`;
+
+      const opt = {
+        margin:       [topMarginMm, sideMarginMm, topMarginMm, sideMarginMm],
+        filename:     filename,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { 
+          scale: 2, 
+          useCORS: true, 
+          allowTaint: true,
+          logging: false,
+          width: baseWidthPx,
+          windowWidth: 800,
+          scrollX: 0,
+          scrollY: 0
+        },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['avoid-all'] }
+      };
+
+      await html2pdf().set(opt).from(admitCardPrintArea).save();
+
+    } catch (err) {
+      console.error('PDF download error:', err);
+      triggerPrint();
+    } finally {
+      adjustMobileScale();
+      loadingOverlay.style.display = 'none';
+    }
+  }
+
+  // Button Listeners
+  btnPrintCard.addEventListener('click', triggerPrint);
+  if (btnPrintCardBottom) {
+    btnPrintCardBottom.addEventListener('click', triggerPrint);
   }
 
   btnDownloadPdf.addEventListener('click', downloadPDF);
   if (btnDownloadPdfBottom) {
     btnDownloadPdfBottom.addEventListener('click', downloadPDF);
   }
+
+  btnScrollPreview.addEventListener('click', () => {
+    admitCardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   // ------------------------------------------------------------------
   // Student Directory / Roster Modal
