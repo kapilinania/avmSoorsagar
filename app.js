@@ -284,102 +284,44 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Set document title so when saving as PDF, the filename defaults to Admit_Card_[roll]_[name].pdf
+    const safeStudentName = (currentStudent.name || 'Student').replace(/\s+/g, '_');
+    document.title = `Admit_Card_${currentStudent.rollNo}_${safeStudentName}`;
+
+    // Reset inline transforms immediately before opening print/save dialog
     const wrap = document.querySelector('.admit-card-scroll-wrap');
-    
-    // Clear inline transform so print dialog sees the full unscaled A4 element
-    admitCardPrintArea.style.transform = 'none';
-    admitCardPrintArea.style.marginLeft = 'auto';
-    admitCardPrintArea.style.marginRight = 'auto';
+    if (admitCardPrintArea) {
+      admitCardPrintArea.style.transform = '';
+      admitCardPrintArea.style.marginLeft = '';
+      admitCardPrintArea.style.marginRight = '';
+    }
     if (wrap) {
-      wrap.style.height = 'auto';
-      wrap.style.overflow = 'visible';
+      wrap.style.height = '';
+      wrap.style.overflow = '';
     }
 
-    setTimeout(() => {
-      window.print();
-    }, 100);
+    // DIRECT SYNCHRONOUS CALL:
+    // Calling window.print() synchronously inside user gesture guarantees
+    // it will NEVER be blocked by Android Chrome or iOS popup blockers!
+    window.print();
   }
+
+  window.addEventListener('beforeprint', () => {
+    if (admitCardPrintArea) {
+      admitCardPrintArea.style.transform = '';
+      admitCardPrintArea.style.marginLeft = '';
+      admitCardPrintArea.style.marginRight = '';
+    }
+  });
 
   window.addEventListener('afterprint', () => {
     adjustMobileScale();
   });
 
-  async function downloadPDF() {
-    if (!currentStudent) {
-      showError('विद्यार्थी चुनें', 'कृपया पहले विद्यार्थी का रोल नंबर खोजें।');
-      return;
-    }
-
-    loadingOverlay.style.display = 'flex';
-    const loadingText = document.getElementById('loadingText');
-    if (loadingText) loadingText.textContent = 'पीडीएफ तैयार हो रहा है...';
-
-    const wrap = document.querySelector('.admit-card-scroll-wrap');
-
-    try {
-      // 1. Reset transforms on the card element for clean unscaled capture
-      admitCardPrintArea.style.transform = 'none';
-      admitCardPrintArea.style.marginLeft = 'auto';
-      admitCardPrintArea.style.marginRight = 'auto';
-      if (wrap) {
-        wrap.style.height = 'auto';
-        wrap.style.overflow = 'visible';
-      }
-
-      // 2. Ensure images inside admitCardPrintArea are loaded
-      const images = Array.from(admitCardPrintArea.querySelectorAll('img'));
-      await Promise.all(images.map(img => {
-        if (img.complete) return Promise.resolve();
-        return new Promise(res => {
-          img.onload = res;
-          img.onerror = res;
-          setTimeout(res, 800);
-        });
-      }));
-
-      // Short delay for DOM render settle
-      await new Promise(r => setTimeout(r, 80));
-
-      // 3. Calculate exact A4 geometry (210mm x 297mm)
-      const baseWidthPx = 760;
-      const cardHeightPx = admitCardPrintArea.offsetHeight || 780;
-      const printableWidthMm = 186; // 12mm margins on left and right
-      const cardHeightMm = (printableWidthMm * cardHeightPx) / baseWidthPx;
-      
-      // Center vertically on the single A4 sheet
-      const topMarginMm = Math.max(10, Math.min(38, Math.floor((297 - cardHeightMm) / 2)));
-      const sideMarginMm = Math.floor((210 - printableWidthMm) / 2);
-
-      const safeStudentName = (currentStudent.name || 'Student').replace(/[^a-zA-Z0-9]/g, '_');
-      const filename = `Admit_Card_${currentStudent.rollNo}_${safeStudentName}.pdf`;
-
-      const opt = {
-        margin:       [topMarginMm, sideMarginMm, topMarginMm, sideMarginMm],
-        filename:     filename,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { 
-          scale: 2, 
-          useCORS: true, 
-          allowTaint: true,
-          logging: false,
-          width: baseWidthPx,
-          windowWidth: 800,
-          scrollX: 0,
-          scrollY: 0
-        },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak:    { mode: ['avoid-all'] }
-      };
-
-      await html2pdf().set(opt).from(admitCardPrintArea).save();
-
-    } catch (err) {
-      console.error('PDF download error:', err);
-      triggerPrint();
-    } finally {
-      adjustMobileScale();
-      loadingOverlay.style.display = 'none';
-    }
+  function downloadPDF() {
+    // Both download and print buttons open the high-fidelity native print/save dialog
+    // which renders 100% perfect Devanagari Hindi typography without mangling ligatures!
+    triggerPrint();
   }
 
   // Button Listeners
